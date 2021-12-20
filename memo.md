@@ -11,11 +11,10 @@
     - `git branch -M <new_local>`
     - `git push -u <remote> <local>`
         - `-u` の意味は？
-- こまめに `commit` すること 複数の修正箇所をまとめてやらない
-    - 1 ファイルだけ `commit` する方法は？
-- コミットメッセージ書式をなるべく統一
-    - <種別>: <対象> \[理由\]
-        - `update: README.md`
+- コミットメッセージを書く
+    - `Update README.md`
+    - `Update memo.md to add links`
+    - [\[転載\] gitにおけるコミットログ/メッセージ例文集100](https://gist.github.com/mono0926/e6ffd032c384ee4c1cef5a2aa4f778d7)
 - 直前のコミットの取り消し
     - `git reset --soft HEAD^`
         - `--soft` はファイルに変更は加えずコミット自体のみ削除
