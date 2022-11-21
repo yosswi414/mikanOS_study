@@ -26,3 +26,10 @@
         - `[file]` を指定しないとステージングされた全ファイルのインデックスを削除する
         - `[file]` を指定するとそのファイルのインデックスのみを削除する
     - [git add の取り消し方法](https://proengineer.internous.co.jp/content/columnfeature/6969)
+
+## ansible
+- 環境構築時
+    - "Distribution Ubuntu 20.04 on host localhost should use /usr/bin/python3, ..." の警告
+        - https://qiita.com/latin1/items/98212c81ba8f5e83b6ca
+    - "Skipping plugin (...) as it seems to be invalid: cannot import name 'environmentfilter' from 'jinja2.filters'"
+        - solution unknown
