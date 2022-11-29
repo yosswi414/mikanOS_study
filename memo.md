@@ -18,7 +18,7 @@
 - 直前のコミットの取り消し
     - `git reset --soft HEAD^`
         - `--soft` はファイルに変更は加えずコミット自体のみ削除
-        - `--hard` にするとファイルごと遡るため変更が失われるので
+        - `--hard` にするとファイルごと遡るため変更が失われる
         - `HEAD^^`, `HEAD^^^`, ... で 2, 3, ... 個前のコミットまで遡る注意
     - [\[Git\]コミットの取り消し、打ち消し、上書き - Qiita](https://qiita.com/shuntaro_tamura/items/06281261d893acf049ed)
 - ステージング (`git add`) の取り消し
@@ -26,10 +26,14 @@
         - `[file]` を指定しないとステージングされた全ファイルのインデックスを削除する
         - `[file]` を指定するとそのファイルのインデックスのみを削除する
     - [git add の取り消し方法](https://proengineer.internous.co.jp/content/columnfeature/6969)
+    - `git restore --staged <file>` でもよい
+- ファイルの追跡停止
+    - `git rm --cached <file>`
+        - `--cached` を省くとファイルの実体も削除される
 
 ## ansible
 - 環境構築時
     - "Distribution Ubuntu 20.04 on host localhost should use /usr/bin/python3, ..." の警告
         - https://qiita.com/latin1/items/98212c81ba8f5e83b6ca
     - "Skipping plugin (...) as it seems to be invalid: cannot import name 'environmentfilter' from 'jinja2.filters'"
-        - solution unknown
+        - よくわからんまま解決 (アプデで直る？)

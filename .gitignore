@@ -1,4 +1,5 @@
 *.img
 *.efi
 *.EFI
-
+/workspace
+memmap
