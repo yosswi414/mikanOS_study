@@ -1,6 +1,8 @@
 BASE = ~/mikanOS
 LOADER = $(BASE)/edk2/Build/MikanLoaderX64/DEBUG_CLANG38/X64/Loader.efi
+LOADER_SRC = $(BASE)/workspace/mikanos/MikanLoaderPkg/Main.c
 KERNEL = $(BASE)/workspace/mikanos/kernel/kernel.elf
+KERNEL_SRC = $(BASE)/workspace/mikanos/kernel/main.cpp
 QEMU = $(BASE)/osbook/devenv/run_qemu.sh
 
 SHELL := /bin/bash
@@ -12,7 +14,7 @@ SHELL := /bin/bash
 run: $(LOADER) $(KERNEL) Makefile
 	$(QEMU) $(LOADER) $(KERNEL)
 
-$(LOADER): Makefile
+$(LOADER): Makefile $(LOADER_SRC)
 	cd $(BASE)/edk2; . ./edksetup.sh; build
 
 BASEDIR="$(BASE)/osbook/devenv/x86_64-elf"
@@ -26,6 +28,6 @@ LDFLAGS="-L$(BASEDIR)/lib"
 
 export CPPFLAGS
 export LDFLAGS
-$(KERNEL): Makefile
+$(KERNEL): Makefile $(KERNEL_SRC)
 	. $(BASE)/osbook/devenv/buildenv.sh; make -C $(dir $@)
 
