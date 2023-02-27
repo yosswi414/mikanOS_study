@@ -3,3 +3,4 @@
 *.EFI
 /workspace
 memmap
+.vscode/

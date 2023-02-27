@@ -3,6 +3,7 @@ LOADER = $(BASE)/edk2/Build/MikanLoaderX64/DEBUG_CLANG38/X64/Loader.efi
 LOADER_SRC = $(BASE)/workspace/mikanos/MikanLoaderPkg/Main.c
 KERNEL = $(BASE)/workspace/mikanos/kernel/kernel.elf
 KERNEL_SRC = $(BASE)/workspace/mikanos/kernel/main.cpp
+KERNEL_MKF = $(BASE)/workspace/mikanos/kernel/Makefile
 QEMU = $(BASE)/osbook/devenv/run_qemu.sh
 
 SHELL := /bin/bash
@@ -28,6 +29,6 @@ LDFLAGS="-L$(BASEDIR)/lib"
 
 export CPPFLAGS
 export LDFLAGS
-$(KERNEL): Makefile $(KERNEL_SRC)
+$(KERNEL): Makefile $(KERNEL_SRC) $(KERNEL_MKF)
 	. $(BASE)/osbook/devenv/buildenv.sh; make -C $(dir $@)
 
