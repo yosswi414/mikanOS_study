@@ -1,6 +1,6 @@
 *.img
 *.efi
 *.EFI
-/workspace
+# /workspace
 memmap
 .vscode/
