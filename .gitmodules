@@ -1,13 +1,11 @@
 [submodule "osbook"]
 	path = osbook
-	url = https://github.com/yosswi414/mikanos-build
+	url = git@github.com:yosswi414/mikanos-build.git
 [submodule "edk2"]
 	path = edk2
-	url = https://github.com/tianocore/edk2
+	url = git@github.com:tianocore/edk2.git
 	branch = 38c8be123aced4cc8ad5c7e0da9121a181b94251
-[submodule "mikanos"]
-	path = ./workspace/mikanos
-	url = https://github.com/yosswi414/mikanOS
 [submodule "workspace/mikanos"]
 	path = workspace/mikanos
-	url = git@github.com:yosswi414/mikanOS.git
+	url = git@github.com:yosswi414/mikanos.git
+	branch = study-branch
