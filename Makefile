@@ -1,6 +1,7 @@
 BASE = /home/yosswi414/mikanOS
 LOADER = $(BASE)/edk2/Build/MikanLoaderX64/DEBUG_CLANG38/X64/Loader.efi
 LOADER_SRC = $(BASE)/workspace/mikanos/MikanLoaderPkg/Main.c
+KERNEL_SRC = $(BASE)/workspace/mikanos/kernel/main.cpp
 KERNEL = $(BASE)/workspace/mikanos/kernel/kernel.elf
 KERNEL_MKF = $(BASE)/workspace/mikanos/kernel/Makefile
 KERNEL_OBJS = main.o graphics.o font.o newlib_support.o console.o pci.o asmfunc.o logger.o
@@ -20,7 +21,7 @@ SHELL := /bin/bash
 test:
 	@echo KERNEL_DEPENDS: $(KERNEL_DEPENDS)
 
-run: $(LOADER) $(KERNEL)
+run: $(LOADER) $(KERNEL) $(KERNEL_DEPENDS)
 	$(QEMU) $(LOADER) $(KERNEL)
 
 clean:
@@ -41,8 +42,7 @@ $(LOADER): $(LOADER_SRC) $(MAKEFS)
 
 # export CPPFLAGS
 # export LDFLAGS
-$(KERNEL): $(KERNEL_DEPENDS) $(MAKEFS)
-	touch $@
+$(KERNEL): $(KERNEL_DEPENDS) $(MAKEFS) $(KERNEL_SRC)
 
 $(KERNEL_DEPENDS): $(MAKEFS)
 	make -C $(dir $@)
