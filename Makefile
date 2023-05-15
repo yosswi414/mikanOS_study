@@ -4,7 +4,7 @@ LOADER_SRC = $(BASE)/workspace/mikanos/MikanLoaderPkg/Main.c
 KERNEL_SRC = $(BASE)/workspace/mikanos/kernel/main.cpp
 KERNEL = $(BASE)/workspace/mikanos/kernel/kernel.elf
 KERNEL_MKF = $(BASE)/workspace/mikanos/kernel/Makefile
-KERNEL_OBJS = main.o graphics.o font.o newlib_support.o console.o pci.o asmfunc.o logger.o
+KERNEL_OBJS = main.o graphics.o font.o newlib_support.o console.o pci.o asmfunc.o logger.o usb/xhci/xhci.hpp
 KERNEL_DEPENDS = $(addprefix $(dir $(KERNEL)),$(notdir $(KERNEL_OBJS)))
 QEMU = $(BASE)/osbook/devenv/run_qemu.sh
 MAKEFS = Makefile $(KERNEL_MKF)
@@ -21,7 +21,7 @@ SHELL := /bin/bash
 test:
 	@echo KERNEL_DEPENDS: $(KERNEL_DEPENDS)
 
-run: $(LOADER) $(KERNEL) $(KERNEL_DEPENDS)
+run: $(LOADER) $(KERNEL) $(KERNEL_DEPENDS) $(KERNEL_SRC)
 	$(QEMU) $(LOADER) $(KERNEL)
 
 clean:
