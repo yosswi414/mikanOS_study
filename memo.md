@@ -37,3 +37,11 @@
         - https://qiita.com/latin1/items/98212c81ba8f5e83b6ca
     - "Skipping plugin (...) as it seems to be invalid: cannot import name 'environmentfilter' from 'jinja2.filters'"
         - よくわからんまま解決 (アプデで直る？)
+
+## debug
+- gdb
+    - `run_image.sh` で `qemu-system-x86_64` のオプションに `-s -S` を付ける
+    - 起動後、`gdb` で `target remote :1234` で接続
+    - `file workspace/mikanos/kernel/kernel.elf` でイメージ読み込み
+    - [qemu上のmikanOSをgdbでデバッグする方法](https://tomiylab.com/2021/09/gdb-mikanos/)
+    - [GDBの使い方メモ](https://nkon.github.io/Gdb-basic/)
