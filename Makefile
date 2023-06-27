@@ -1,11 +1,14 @@
 BASE = /home/yosswi414/mikanOS
 LOADER = $(BASE)/edk2/Build/MikanLoaderX64/DEBUG_CLANG38/X64/Loader.efi
 LOADER_SRC = $(BASE)/workspace/mikanos/MikanLoaderPkg/Main.c
-KERNEL_SRC = $(BASE)/workspace/mikanos/kernel/main.cpp
-KERNEL = $(BASE)/workspace/mikanos/kernel/kernel.elf
-KERNEL_MKF = $(BASE)/workspace/mikanos/kernel/Makefile
-KERNEL_OBJS = main.o graphics.o font.o newlib_support.o console.o pci.o asmfunc.o logger.o usb/xhci/xhci.hpp
-KERNEL_DEPENDS = $(addprefix $(dir $(KERNEL)),$(notdir $(KERNEL_OBJS)))
+KERNEL_DIR = $(BASE)/workspace/mikanos/kernel
+KERNEL_SRC = $(wildcard $(KERNEL_DIR)/*.cpp $(KERNEL_DIR)/*.hpp)
+KERNEL = $(KERNEL_DIR)/kernel.elf
+KERNEL_MKF = $(KERNEL_DIR)/Makefile
+# KERNEL_OBJS = main.o graphics.o font.o newlib_support.o console.o pci.o asmfunc.o logger.o usb/xhci/xhci.hpp
+# KERNEL_DEPENDS = $(addprefix $(dir $(KERNEL)),$(notdir $(KERNEL_OBJS)))
+KERNEL_DEPENDS = $(subst .cpp,.o,$(wildcard $(KERNEL_DIR)/*.cpp))
+
 QEMU = $(BASE)/osbook/devenv/run_qemu.sh
 MAKEFS = Makefile $(KERNEL_MKF)
 
@@ -44,5 +47,5 @@ $(LOADER): $(LOADER_SRC) $(MAKEFS)
 # export LDFLAGS
 $(KERNEL): $(KERNEL_DEPENDS) $(MAKEFS) $(KERNEL_SRC)
 
-$(KERNEL_DEPENDS): $(MAKEFS)
+$(KERNEL_DEPENDS): $(MAKEFS) $(KERNEL_SRC)
 	make -C $(dir $@)

@@ -5,3 +5,4 @@
 memmap
 .vscode/
 mnt/
+*.lst
