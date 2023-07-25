@@ -3,6 +3,7 @@
 *.EFI
 # /workspace
 memmap
+memmap_copy.txt
 .vscode/
 mnt/
 *.lst
