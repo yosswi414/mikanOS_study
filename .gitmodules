@@ -3,8 +3,8 @@
 	url = git@github.com:yosswi414/mikanos-build.git
 [submodule "edk2"]
 	path = edk2
-	url = git@github.com:tianocore/edk2.git
-	branch = 38c8be123aced4cc8ad5c7e0da9121a181b94251
+	url = git@github.com:yosswi414/mikanos-edk2.git
+	branch = d6bafe384da40c092b823439f227f6675dde865b
 [submodule "workspace/mikanos"]
 	path = workspace/mikanos
 	url = git@github.com:yosswi414/mikanos.git
