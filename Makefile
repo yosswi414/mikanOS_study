@@ -28,7 +28,7 @@ run: $(LOADER) $(KERNEL) $(KERNEL_DEPENDS) $(KERNEL_SRC)
 	$(QEMU) $(LOADER) $(KERNEL)
 
 clean:
-	rm -f $(KERNEL_DEPENDS) $(KERNEL)
+	rm -f $(KERNEL_DEPENDS) $(KERNEL) $(LOADER)
 
 $(LOADER): $(LOADER_SRC) $(MAKEFS)
 	cd $(BASE)/edk2; . ./edksetup.sh; build
