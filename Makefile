@@ -1,4 +1,4 @@
-BASE = /home/yosswi414/mikanOS
+BASE = .
 LOADER = $(BASE)/edk2/Build/MikanLoaderX64/DEBUG_CLANG38/X64/Loader.efi
 LOADER_SRC = $(BASE)/workspace/mikanos/MikanLoaderPkg/Main.c
 KERNEL_DIR = $(BASE)/workspace/mikanos/kernel
