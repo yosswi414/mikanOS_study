@@ -30,10 +30,10 @@ run: $(LOADER) $(KERNEL) $(KERNEL_DEPENDS) $(KERNEL_SRC)
 clean:
 	make clean -C $(KERNEL_DIR)
 	rm -f $(LOADER)
+	rm -rf $(dir $(LOADER))MikanLoaderPkg
 
 $(LOADER): $(LOADER_SRC) $(MAKEFS)
 	cd $(BASE)/edk2; . ./edksetup.sh; build
-	touch $@
 
 # BASEDIR="$(BASE)/osbook/devenv/x86_64-elf"
 # EDK2DIR="$(BASE)/edk2"
