@@ -2,12 +2,9 @@ BASE = .
 LOADER = $(BASE)/edk2/Build/MikanLoaderX64/DEBUG_CLANG38/X64/Loader.efi
 LOADER_SRC = $(BASE)/workspace/mikanos/MikanLoaderPkg/Main.c
 KERNEL_DIR = $(BASE)/workspace/mikanos/kernel
-KERNEL_SRC = $(wildcard $(KERNEL_DIR)/*.cpp $(KERNEL_DIR)/*.hpp)
+KERNEL_SRC = $(shell find $(KERNEL_DIR) -name "*.cpp" -o -name "*.hpp" -o -name "*.c" -o -name "*.h" -o -name "*.asm")
 KERNEL = $(KERNEL_DIR)/kernel.elf
 KERNEL_MKF = $(KERNEL_DIR)/Makefile
-# KERNEL_OBJS = main.o graphics.o font.o newlib_support.o console.o pci.o asmfunc.o logger.o usb/xhci/xhci.hpp
-# KERNEL_DEPENDS = $(addprefix $(dir $(KERNEL)),$(notdir $(KERNEL_OBJS)))
-KERNEL_DEPENDS = $(subst .cpp,.o,$(wildcard $(KERNEL_DIR)/*.cpp))
 
 QEMU = $(BASE)/osbook/devenv/run_qemu.sh
 MAKEFS = Makefile $(KERNEL_MKF)
@@ -17,23 +14,29 @@ SHELL := /bin/bash
 # OLD_SHELL := $(SHELL)
 # SHELL = $(warning [Making: $@]   [Dependencies: $^]   [Changed: $?])$(OLD_SHELL)
 
-.PHONY: run test clean
+.PHONY: run
+run: $(LOADER) $(KERNEL) Makefile
+	$(QEMU) $(LOADER) $(KERNEL)
 
 .DEFAULT_GOAL := run
 
+.PHONY: test
 test:
-	@echo KERNEL_DEPENDS: $(KERNEL_DEPENDS)
+	# @echo KERNEL_DEPENDS: $(KERNEL_DEPENDS)
+	# @echo KERNEL_SRC: $(KERNEL_SRC)
+	@echo wildcard: $(shell find $(KERNEL_DIR) -name "*.cpp" -o -name "*.hpp" -o -name "*.c" -o -name "*.h" -o -name "*.asm")
 
-run: $(LOADER) $(KERNEL) $(KERNEL_DEPENDS) $(KERNEL_SRC)
-	$(QEMU) $(LOADER) $(KERNEL)
+.PHONY: loader
+loader: $(LOADER)
 
+.PHONY: clean
 clean:
 	make clean -C $(KERNEL_DIR)
 	rm -f $(LOADER)
 	rm -rf $(dir $(LOADER))MikanLoaderPkg
 
-$(LOADER): $(LOADER_SRC) $(MAKEFS)
-	cd $(BASE)/edk2; . ./edksetup.sh; build
+$(LOADER): $(LOADER_SRC) Makefile
+	cd $(BASE)/edk2; . ./edksetup.sh; build; cd $(BASE)
 
 # BASEDIR="$(BASE)/osbook/devenv/x86_64-elf"
 # EDK2DIR="$(BASE)/edk2"
@@ -46,7 +49,9 @@ $(LOADER): $(LOADER_SRC) $(MAKEFS)
 
 # export CPPFLAGS
 # export LDFLAGS
-$(KERNEL): $(KERNEL_DEPENDS) $(KERNEL_MKF) $(KERNEL_SRC)
 
-$(KERNEL_DEPENDS): $(KERNEL_MKF) $(KERNEL_SRC)
-	make -C $(dir $@)
+$(KERNEL): $(KERNEL_SRC) $(KERNEL_MKF)
+	make -C $(KERNEL_DIR)
+
+# $(KERNEL_DEPENDS): $(KERNEL_MKF) $(KERNEL_SRC)
+	
