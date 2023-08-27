@@ -31,8 +31,7 @@ loader: $(LOADER)
 
 .PHONY: clean
 clean:
-	make clean -C $(KERNEL_DIR)
-	rm -f $(LOADER)
+	rm $(LOADER)
 	rm -rf $(dir $(LOADER))MikanLoaderPkg
 
 $(LOADER): $(LOADER_SRC) Makefile
