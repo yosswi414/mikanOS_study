@@ -45,3 +45,10 @@
     - `file workspace/mikanos/kernel/kernel.elf` でイメージ読み込み
     - [qemu上のmikanOSをgdbでデバッグする方法](https://tomiylab.com/2021/09/gdb-mikanos/)
     - [GDBの使い方メモ](https://nkon.github.io/Gdb-basic/)
+
+## 高速化 (?)
+- KVM
+    - `run_image.sh` で `qemu-system-x86_64` のオプションに `-accel kvm` を付ける
+        - `export QEMU_OPTS="${QEMU_OPTS} -accel kvm -cpu host` を実行してから `make` で大丈夫
+        - `-cpu host`: [https://twitter.com/RyJyx/status/1228469462862422017]
+    - [qemu (WSL) を KVM で高速化する](https://blog.myclinic.dev/posts/qemu-kvm/)
