@@ -12,6 +12,8 @@ make
 
 # 進捗
 ```
+2023/09/15  ch: 10.4 (p.259)
+2023/09/14  ch: 10.3 (p.253)
 2023/09/03  ch: 9.7 (p.245) (revision done)
 2023/08/28  ch:   ? (boot failure caused by bad Makefile recipe resolved)
 2023/08/25  ch:   ? (unknown bugs)
