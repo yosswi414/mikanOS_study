@@ -12,6 +12,7 @@ make
 
 # 進捗
 ```
+2023/10/26  ch: 11.2 (p.273 + slight refactoring)
 2023/10/19  ch: 11.1 (p.270)
 2023/10/13  ch: - (added LayerManager::SetToFront())
 2023/10/12  ch: 10.7 (p.267)
